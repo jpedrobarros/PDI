@@ -60,3 +60,42 @@ document.addEventListener("DOMContentLoaded", () => {
         revealObserver.observe(el);
     });
 });
+
+// Data Persistence (Auto-Save)
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Static Editable Elements
+    const staticEditables = document.querySelectorAll('[contenteditable=\"true\"]:not(.swot-list [contenteditable=\"true\"])');
+    staticEditables.forEach((el, index) => {
+        const id = el.id || ('static-edit-' + index);
+        el.id = id;
+
+        const savedContent = localStorage.getItem(id);
+        if (savedContent !== null) {
+            el.innerHTML = savedContent;
+            if (el.classList.contains('glitch-text')) {
+                el.setAttribute('data-text', el.innerText);
+            }
+        }
+
+        el.addEventListener('input', () => {
+            localStorage.setItem(id, el.innerHTML);
+        });
+    });
+
+    // 2. Dynamic SWOT Lists
+    const swotLists = ['forcas-list', 'fraquezas-list', 'oportunidades-list', 'ameacas-list'];
+    swotLists.forEach(id => {
+        const list = document.getElementById(id);
+        if (!list) return;
+
+        const savedList = localStorage.getItem(id);
+        if (savedList !== null) {
+            list.innerHTML = savedList;
+        }
+
+        const observer = new MutationObserver(() => {
+            localStorage.setItem(id, list.innerHTML);
+        });
+        observer.observe(list, { childList: true, subtree: true, characterData: true });
+    });
+});

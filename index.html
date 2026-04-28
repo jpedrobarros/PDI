@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
+<html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Jornada - PDI Analítico</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,8 +21,7 @@
                 </div>
 
                 <h1 class="hero-title">
-                    <span class="glitch-text" data-text="JOTA" contenteditable="true"
-                        oninput="this.setAttribute('data-text', this.innerText)">JOTA</span><br>
+                    <span class="glitch-text" data-text="JOTA" contenteditable="true" oninput="this.setAttribute('data-text', this.innerText)">JOTA</span><br>
                     <span class="gradient-text type-effect" contenteditable="true">PDI ANALÍTICO</span>
                 </h1>
 
@@ -37,7 +32,7 @@
                 <div class="hero-metrics">
                     <div class="metric-box">
                         <div class="metric-label">STATUS</div>
-                        <div class="metric-value text-cyan" contenteditable="true">OPTIMIZED</div>
+                        <div class="metric-value text-cyan" contenteditable="true">OPTIDSADASDMIZED</div>
                     </div>
                 </div>
             </div>
@@ -57,11 +52,10 @@
 
         <!-- 2. IMPACTO E RESULTADOS -->
         <section class="impact reveal">
-            <h2 class="section-heading">Impacto Direto & Resultados</h2>
+            <h2 class="section-heading">Impacto Direto &amp; Resultados</h2>
             <div class="bento-grid">
                 <!-- Large Card: Gerados -->
-                <div class="bento-card bento-item-large bento-stat-card"
-                    style="background: linear-gradient(145deg, var(--bg-card), rgba(6, 182, 212, 0.1));">
+                <div class="bento-card bento-item-large bento-stat-card" style="background: linear-gradient(145deg, var(--bg-card), rgba(6, 182, 212, 0.1));">
                     <div class="stat-header" contenteditable="true">Valor Total Gerado</div>
                     <div class="stat-main gradient-text" contenteditable="true">+$570k</div>
                     <div class="stat-sub" contenteditable="true">~R$2.9M</div>
@@ -185,23 +179,19 @@
                 <div class="list-wrapper">
                     <div class="list-item">
                         <span class="list-item-name" contenteditable="true">Ximena</span>
-                        <span class="list-item-value" contenteditable="true"
-                            style="color: var(--accent-purple);">7x</span>
+                        <span class="list-item-value" contenteditable="true" style="color: var(--accent-purple);">7x</span>
                     </div>
                     <div class="list-item">
                         <span class="list-item-name" contenteditable="true">David</span>
-                        <span class="list-item-value" contenteditable="true"
-                            style="color: var(--accent-purple);">4x</span>
+                        <span class="list-item-value" contenteditable="true" style="color: var(--accent-purple);">4x</span>
                     </div>
                     <div class="list-item">
                         <span class="list-item-name" contenteditable="true">Lianet</span>
-                        <span class="list-item-value" contenteditable="true"
-                            style="color: var(--accent-purple);">4x</span>
+                        <span class="list-item-value" contenteditable="true" style="color: var(--accent-purple);">4x</span>
                     </div>
                     <div class="list-item">
                         <span class="list-item-name" contenteditable="true">Beatriz</span>
-                        <span class="list-item-value" contenteditable="true"
-                            style="color: var(--accent-purple);">2x</span>
+                        <span class="list-item-value" contenteditable="true" style="color: var(--accent-purple);">2x</span>
                     </div>
                 </div>
             </div>
@@ -257,8 +247,7 @@
                 <div class="swot-quadrant swot-oportunidades">
                     <div class="swot-header">
                         <h3 contenteditable="true">Oportunidades</h3>
-                        <button class="btn-icon" onclick="addSwotItem('oportunidades-list')"
-                            title="Adicionar">+</button>
+                        <button class="btn-icon" onclick="addSwotItem('oportunidades-list')" title="Adicionar">+</button>
                     </div>
                     <ul class="swot-list" id="oportunidades-list">
                         <li>
@@ -347,9 +336,17 @@
             <span class="footer-text" contenteditable="true">Confidencial • PDI Analítico</span>
         </footer>
 
+        <!-- Floating Sync Button -->
+        <button id="saveGithubBtn" class="floating-save-btn" title="Salvar e Publicar na Produção" onclick="saveToGitHub()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            Publicar Alterações
+        </button>
+
     </div>
 
     <script src="script.js"></script>
-</body>
 
-</html>
+
+<div id="give-freely-root-ejkiikneibegknkgimmihdpcbcedgmpo" class="give-freely-root" data-extension-id="ejkiikneibegknkgimmihdpcbcedgmpo" data-extension-name="Volume Booster" style="display: block;"></div></body></html>

@@ -916,3 +916,33 @@ body {
 }
 
 
+
+/* Floating Sync Button */
+.floating-save-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+    z-index: 100;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-save-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(6, 182, 212, 0.6);
+}
+
+.floating-save-btn:active {
+    transform: translateY(2px);
+}

@@ -1,4 +1,4 @@
-// Add/Remove SWOT Items
+﻿// Add/Remove SWOT Items
 function addSwotItem(listId) {
     const list = document.getElementById(listId);
     if (!list) return;
@@ -61,25 +61,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// Data Persistence (Auto-Save)
+// Data Persistence (Auto-Save to Server)
+let saveTimeout;
+
+async function saveToServer() {
+    // 1. Remove .active from .reveal so animations reset on reload
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach(el => el.classList.remove('active'));
+
+    const finalHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+    // Put animations back so the screen doesn't flicker
+    revealElements.forEach(el => el.classList.add('active'));
+
+    try {
+        await fetch('http://localhost:3000/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ html: finalHtml })
+        });
+        console.log('Saved to server.');
+    } catch (err) {
+        console.error('Failed to save to server:', err);
+    }
+}
+
+function triggerSave() {
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+        saveToServer();
+    }, 1000); // Debounce for 1 second
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Static Editable Elements
-    const staticEditables = document.querySelectorAll('[contenteditable=\"true\"]:not(.swot-list [contenteditable=\"true\"])');
+    const staticEditables = document.querySelectorAll('[contenteditable="true"]:not(.swot-list [contenteditable="true"])');
     staticEditables.forEach((el, index) => {
-        const id = el.id || ('static-edit-' + index);
-        el.id = id;
-
-        const savedContent = localStorage.getItem(id);
-        if (savedContent !== null) {
-            el.innerHTML = savedContent;
-            if (el.classList.contains('glitch-text')) {
+        // Fix glitch text attribute so it saves properly
+        if (el.classList.contains('glitch-text')) {
+            el.addEventListener('input', () => {
                 el.setAttribute('data-text', el.innerText);
-            }
+            });
         }
-
-        el.addEventListener('input', () => {
-            localStorage.setItem(id, el.innerHTML);
-        });
+        
+        el.addEventListener('input', triggerSave);
     });
 
     // 2. Dynamic SWOT Lists
@@ -88,13 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const list = document.getElementById(id);
         if (!list) return;
 
-        const savedList = localStorage.getItem(id);
-        if (savedList !== null) {
-            list.innerHTML = savedList;
-        }
-
         const observer = new MutationObserver(() => {
-            localStorage.setItem(id, list.innerHTML);
+            triggerSave();
         });
         observer.observe(list, { childList: true, subtree: true, characterData: true });
     });
